@@ -2,6 +2,12 @@
 logs
 *.log
 
+# Vim editor
+*.swp
+
+# Local environement
+.env
+
 # Runtime data
 pids
 *.pid
