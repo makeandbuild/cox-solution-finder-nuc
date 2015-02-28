@@ -8,6 +8,7 @@ var async = require('async')
   , app = express()
   , fs = require('fs')
   , mkdirp = require('mkdirp')
+  , _ = require('lodash')
   , dataDir = 'data/'
   , archiveDir = 'archive/'
 
@@ -21,11 +22,11 @@ app.get('/_status_/heartbeat', function (req, res) {
 });
 
 // record json
-app.post('/', function(req, res) {
+app.post('/record.json', function(req, res) {
   var json = req.body
     , name = (new Date).getTime()
 
-  fs.writeFile(dataDir + name + '.json', json , function(err){
+  fs.writeFile(dataDir + name + '.json', JSON.stringify(json), function(err){
     if (err) {
       res.json({ status: 'error', message: err })
     } else {
@@ -33,6 +34,62 @@ app.post('/', function(req, res) {
     }
   })
 })
+
+app.get('/records.json', function(req, res) {
+  fs.readdir(dataDir, function(err, files){
+    if (err) {
+      return res.json({ status: 'error', message: err })
+    }
+
+    var data = []
+
+    function readFile(ndx, callback) {
+      if (ndx < files.length){
+        fs.readFile(dataDir + files[ndx], {encoding: 'utf8'}, function(err, content){
+          if (err) {
+            callback(err)
+          } else {
+            data.push(content)
+            readFile(ndx + 1, callback)
+          }
+        })
+      } else {
+        callback()
+      }
+    }
+
+    function moveFile(ndx, callback) {
+      if (ndx < files.length) {
+        fs.rename(dataDir + files[ndx], archiveDir + files[ndx], function(err){
+            if (err) {
+              callback(err)
+            } else {
+              moveFile(ndx + 1, callback)
+            }
+        })
+      } else {
+        callback()
+      }
+    }
+
+    async.waterfall([
+      function(callback){
+        readFile(0, callback)
+      },
+      function(callback){
+        moveFile(0, callback)
+      },
+    ],function(err){
+        if (err) {
+          res.json({ status: 'error', message: err })
+        }else{
+          res.json(data)
+        }
+    })
+
+  })
+})
+
 
 // Ensure port is set
 function ensurePort(callback) {

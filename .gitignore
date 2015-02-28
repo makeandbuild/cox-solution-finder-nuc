@@ -2,6 +2,10 @@
 logs
 *.log
 
+# Data
+data/
+archive/
+
 # Vim editor
 *.swp
 
