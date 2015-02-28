@@ -26,6 +26,9 @@ app.post('/record.json', function(req, res) {
   var json = req.body
     , name = (new Date).getTime()
 
+  // Add id to test for duplicates during processing
+  json._id = name;
+
   fs.writeFile(dataDir + name + '.json', JSON.stringify(json), function(err){
     if (err) {
       res.json({ status: 'error', message: err })
