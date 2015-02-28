@@ -10,10 +10,10 @@
     "url": "https://github.com/maxmedia/cox-solution-finder-nuc/issues"
   },
   "dependencies": {
-    "express": "^4.12.0"
+    "dotenv": "0.5.x",
+    "express": "4.12.x"
   },
   "devDependencies": {},
-  },
   "author": "MaxMedia",
   "main": "index.js",
   "scripts": {
