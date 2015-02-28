@@ -83,7 +83,7 @@ app.get('/records.json', function(req, res) {
         if (err) {
           res.json({ status: 'error', message: err })
         }else{
-          res.json(data)
+          res.json({ status: 'success', data: data })
         }
     })
 
