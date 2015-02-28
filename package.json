@@ -1,0 +1,22 @@
+{
+  "name": "cox-solution-finder-nuc",
+  "version": "0.0.1",
+  "description": "Simple Express app to capture posts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxmedia/cox-solution-finder-nuc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maxmedia/cox-solution-finder-nuc/issues"
+  },
+  "dependencies": {
+    "express": "^4.12.0"
+  },
+  "devDependencies": {},
+  },
+  "author": "MaxMedia",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
