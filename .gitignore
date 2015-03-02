@@ -38,3 +38,5 @@ node_modules
 .lock-wscript
 
 public/
+
+showroom.tar.gz*
