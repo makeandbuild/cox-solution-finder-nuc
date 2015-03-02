@@ -41,3 +41,7 @@ node_modules
 public/
 
 showroom.tar.gz*
+
+/log/*
+/tmp/*
+!.gitkeep
