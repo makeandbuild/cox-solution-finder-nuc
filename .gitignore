@@ -5,6 +5,7 @@ logs
 # Data
 data/
 archive/
+settings/
 
 # Vim editor
 *.swp
