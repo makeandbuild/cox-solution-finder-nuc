@@ -11,6 +11,8 @@ var async = require('async')
   , _ = require('lodash')
   , dataDir = 'data/'
   , archiveDir = 'archive/'
+  , settingsDir = 'settings/'
+  , settingsFile = settingsDir + 'settings.json'
 
 var port = process.env.PORT;
 
@@ -20,6 +22,30 @@ app.use(bodyParser.json())
 app.get('/_status_/heartbeat', function (req, res) {
   res.type("text").send("OK");
 });
+
+// get settings json
+app.get('/settings.json', function(req, res) {
+  fs.readFile(settingsFile, {encoding: 'utf8'}, function(err, content){
+    if (err) {
+      res.json({ status: 'error', message: err })
+    } else {
+      res.json({ status: 'success', data: content })
+    }
+  })
+})
+
+// write settings json
+app.post('/settings.json', function(req, res) {
+  var json = req.body
+
+  fs.writeFile(settingsFile, JSON.stringify(json), function(err){
+    if (err) {
+      res.json({ status: 'error', message: err })
+    } else {
+      res.json({ status: 'success', data: json })
+    }
+  })
+})
 
 // record json
 app.post('/record.json', function(req, res) {
@@ -39,57 +65,66 @@ app.post('/record.json', function(req, res) {
 })
 
 app.get('/records.json', function(req, res) {
-  fs.readdir(dataDir, function(err, files){
-    if (err) {
-      return res.json({ status: 'error', message: err })
+  var data = []
+
+	// First try to read the settings file
+  fs.readFile(settingsFile, {encoding: 'utf8'}, function(err, content){
+    if (! err) {
+      data.push(content)
     }
 
-    var data = []
+		// Now read all the great data
+		fs.readdir(dataDir, function(err, files){
+			if (err) {
+				return res.json({ status: 'error', message: err })
+			}
 
-    function readFile(ndx, callback) {
-      if (ndx < files.length){
-        fs.readFile(dataDir + files[ndx], {encoding: 'utf8'}, function(err, content){
-          if (err) {
-            callback(err)
-          } else {
-            data.push(content)
-            readFile(ndx + 1, callback)
-          }
-        })
-      } else {
-        callback()
-      }
-    }
 
-    function moveFile(ndx, callback) {
-      if (ndx < files.length) {
-        fs.rename(dataDir + files[ndx], archiveDir + files[ndx], function(err){
-            if (err) {
-              callback(err)
-            } else {
-              moveFile(ndx + 1, callback)
-            }
-        })
-      } else {
-        callback()
-      }
-    }
+			function readFile(ndx, callback) {
+				if (ndx < files.length){
+					fs.readFile(dataDir + files[ndx], {encoding: 'utf8'}, function(err, content){
+						if (err) {
+							callback(err)
+						} else {
+							data.push(content)
+							readFile(ndx + 1, callback)
+						}
+					})
+				} else {
+					callback()
+				}
+			}
 
-    async.waterfall([
-      function(callback){
-        readFile(0, callback)
-      },
-      function(callback){
-        moveFile(0, callback)
-      },
-    ],function(err){
-        if (err) {
-          res.json({ status: 'error', message: err })
-        }else{
-          res.json({ status: 'success', data: data })
-        }
-    })
+			function moveFile(ndx, callback) {
+				if (ndx < files.length) {
+					fs.rename(dataDir + files[ndx], archiveDir + files[ndx], function(err){
+							if (err) {
+								callback(err)
+							} else {
+								moveFile(ndx + 1, callback)
+							}
+					})
+				} else {
+					callback()
+				}
+			}
 
+			async.waterfall([
+				function(callback){
+					readFile(0, callback)
+				},
+				function(callback){
+					moveFile(0, callback)
+				},
+			],function(err){
+					if (err) {
+						res.json({ status: 'error', message: err })
+					}else{
+						res.json({ status: 'success', data: data })
+					}
+			})
+
+		})
   })
 })
 
@@ -126,10 +161,22 @@ function ensureArchiveDir(callback) {
   })
 }
 
+// Ensure settingsDir exists
+function ensureSettingsDir(callback) {
+  console.log("Ensuring settings/")
+  mkdirp(settingsDir, function(err){
+    if (err){
+      callback(err)
+    }
+    callback()
+  })
+}
+
 async.waterfall([
   ensurePort,
   ensureDataDir,
-  ensureArchiveDir
+  ensureArchiveDir,
+  ensureSettingsDir
 ],function(err){
   if (err){
     console.log(err)
