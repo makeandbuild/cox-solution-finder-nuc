@@ -33,7 +33,7 @@ EOF
 echo "[$DTS] $if_name $status" >> $LOGFILE
 
 if [[ $status == "up" ]] || [[ $status == "dhcp4-change" ]]; then
-  if [[ $if_name == "enp0s25" ]] || [[ $if_name == "wlp2s0" ]]; then
+  if [[ $if_name == "enp0s25" ]]; then
     change_batch_fn=` writeChangeBatch $if_name `
     aws route53 change-resource-record-sets \
         --hosted-zone-id $ZONE_ID \
