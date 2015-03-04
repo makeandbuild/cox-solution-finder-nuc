@@ -13,8 +13,7 @@ EOF
 
 APP_NAME="sfv2"
 NUC_ID="$1" && shift 1 && [ "$1" ] && usage 1
-TARGET_HOST="wlp2s0.$NUC_ID.sfv2.cox.mxmcloud.com"
-# TARGET_HOST="enp0s25.$NUC_ID.sfv2.cox.mxmcloud.com"
+TARGET_HOST="enp0s25.$NUC_ID.sfv2.cox.mxmcloud.com"
 APP_ROOT="/srv/$APP_NAME"
 
 run() {
