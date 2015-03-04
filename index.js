@@ -13,6 +13,8 @@ var async = require('async')
   , archiveDir = 'archive/'
   , settingsDir = 'settings/'
   , settingsFile = settingsDir + 'settings.json'
+  , server = require('http').Server(app)
+  , io = require('socket.io').listen(server);
 
 var port = process.env.PORT;
 
@@ -128,6 +130,27 @@ app.get('/records.json', function(req, res) {
   })
 })
 
+io.on('connection', function(socket){
+  console.log('it is working?');
+  socket.on('chat request', function(msg){
+    console.log('heard you');
+    io.emit('chat request', msg);
+  });
+
+  socket.on('chat response', function(msg){
+    console.log('heard you');
+    io.emit('chat response', msg);
+  });  
+});
+
+app.get('/touch', function(req, res){
+    res.sendFile(__dirname + '/touch.html');
+});
+
+app.get('/tablet', function(req, res){
+    res.sendFile(__dirname + '/tablet.html');
+});
+
 
 // Ensure port is set
 function ensurePort(callback) {
@@ -182,6 +205,6 @@ async.waterfall([
     console.log(err)
     exit(1)
   }
-  app.listen(port)
+  server.listen(port, function(){ console.log('Server listening now on : ' + port); } );
 })
 
