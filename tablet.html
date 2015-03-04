@@ -2,7 +2,7 @@
 <div class="reply"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 
 
   <script>
@@ -11,11 +11,11 @@
 
 
     $('.request').on('click', function(e) {
-    	socket.emit('chat request');
+    	socket.emit('request');
     	requester = true;
     });
 
-    socket.on('chat response', function(data) {
+    socket.on('response', function(data) {
     	console.log("RECIEVED");
     	if(requester) {
     		$('.reply').text(JSON.stringify(data));

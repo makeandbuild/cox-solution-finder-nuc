@@ -7,10 +7,10 @@
 
  <script>
     var socket = io();
-    socket.on('chat request', function(msg){
+    socket.on('request', function(msg){
     	var response = {"content" : $('.content').text()};
     	console.log("REQUESTED");
-    	socket.emit('chat response', response);
+    	socket.emit('response', response);
     	console.log("REPLY SENT");
     });
   </script>
