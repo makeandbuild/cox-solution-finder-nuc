@@ -66,6 +66,10 @@ run ln -s $APP_ROOT/shared/config/.env releases/$rel_tag/.env
 run "cd releases/$rel_tag ; npm install"
 
 ###
+# Update public
+run "cd releases/$rel_tag ; ./script/update-public.sh"
+
+###
 # Change current
 run rm current
 run ln -s $APP_ROOT/releases/$rel_tag current
