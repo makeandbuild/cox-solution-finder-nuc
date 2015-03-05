@@ -19,7 +19,7 @@ function writeChangeBatch () {
             "ResourceRecords": [
               { "Value": "$DHCP4_IP_ADDRESS" }
             ],
-            "Name": "$1.$(hostname).",
+            "Name": "$(hostname).",
             "Type": "A",
             "TTL": 60
           }
