@@ -2,9 +2,9 @@
 
 function usage () {
   cat <<EOF
-Usage: $PROGNAME nuc1|nuc2
+Usage: $PROGNAME dev|prod
 Deploys the application to the given NUC
-    NUC   nuc1|nuc2
+    NUC   dev|prod
 EOF
   exit $( [ $# -ne 0 ] && echo $1 || echo 0 )
 }
@@ -12,8 +12,15 @@ EOF
 [ -z "$1" ] && usage 1
 
 APP_NAME="sfv2"
-NUC_ID="$1" && shift 1 && [ "$1" ] && usage 1
-TARGET_HOST="enp0s25.$NUC_ID.sfv2.cox.mxmcloud.com"
+if [[ $1 == "dev" ]]; then
+  NUC_ID="$1" && shift 1 && [ "$1" ] && usage 1
+  TARGET_HOST="nuc.showroom.dev.sfv2.cox.mxmcloud.com"
+elif [[ $1 == "prod" ]]; then
+  NUC_ID="$1" && shift 1 && [ "$1" ] && usage 1
+  TARGET_HOST="nuc.showroom.sfv2.cox.mxmcloud.com"
+else
+  usage 1
+fi
 APP_ROOT="/srv/$APP_NAME"
 
 run() {
