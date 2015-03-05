@@ -45,3 +45,7 @@ showroom.tar.gz*
 /log/*
 /tmp/*
 !.gitkeep
+
+#test files
+touch.html
+tablet.html

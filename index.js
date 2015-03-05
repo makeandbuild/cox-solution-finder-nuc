@@ -6,13 +6,16 @@ var async = require('async')
   , express = require('express')
   , bodyParser = require('body-parser')
   , app = express()
+  , server = require('http').Server(app)
+  , io = require('socket.io').listen(server)
   , fs = require('fs')
   , mkdirp = require('mkdirp')
   , _ = require('lodash')
   , dataDir = 'data/'
   , archiveDir = 'archive/'
   , settingsDir = 'settings/'
-  , settingsFile = settingsDir + 'settings.json'
+  , settingsFile = settingsDir + 'settings.json';
+
 
 var port = process.env.PORT;
 
@@ -63,6 +66,10 @@ app.post('/record.json', function(req, res) {
     }
   })
 })
+
+// app.get('/socket.io/', function(req, res) {
+//   console.log('forwarded');
+// });
 
 app.get('/records.json', function(req, res) {
   var data = []
@@ -128,6 +135,28 @@ app.get('/records.json', function(req, res) {
   })
 })
 
+//Listen for TV-Tablet Transfer
+io.on('connection', function(socket){
+  console.log('it is working?');
+  socket.on('request', function(msg){
+    console.log('heard you');
+    io.emit('request', msg);
+  });
+
+  socket.on('response', function(msg){
+    console.log('heard you');
+    io.emit('response', msg);
+  });  
+});
+
+// app.get('/touch', function(req, res){
+//     res.sendFile(__dirname + '/touch.html');
+// });
+
+// app.get('/tablet', function(req, res){
+//     res.sendFile(__dirname + '/tablet.html');
+// });
+
 
 // Ensure port is set
 function ensurePort(callback) {
@@ -182,6 +211,6 @@ async.waterfall([
     console.log(err)
     exit(1)
   }
-  app.listen(port)
+  server.listen(port, function(){ console.log('Server listening now on : ' + port); } );
 })
 

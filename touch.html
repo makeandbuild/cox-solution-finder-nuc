@@ -1,0 +1,16 @@
+<div class="content">
+	Blah blah blah
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
+ <script>
+    var socket = io();
+    socket.on('request', function(msg){
+    	var response = {"content" : $('.content').text()};
+    	console.log("REQUESTED");
+    	socket.emit('response', response);
+    	console.log("REPLY SENT");
+    });
+  </script>
