@@ -12,6 +12,7 @@ if [[ $SHOWROOM_MD5 != $showroom_md5 ]]; then
       mv -f tmp/public public-$DTS
       rm -f public
       ln -s public-$DTS public
+      chown -R sfv2:www public
       for dn in ` find -name 'public-*' `; do
         [[ $dn != "./public-$DTS" ]] && rm -rf $dn
       done
@@ -19,6 +20,6 @@ if [[ $SHOWROOM_MD5 != $showroom_md5 ]]; then
     fi
     rm -f tmp/showroom.tar
   else
-    rm -f showroom.tar
+    rm -f tmp/showroom.tar
   fi
 fi

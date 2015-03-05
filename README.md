@@ -25,22 +25,24 @@ This nginx config shows how to run the static site and this app as a subdirector
 				}
 
 
-# Showroom WIFI
+# Showroom WiFi
 
-## Nuc 1
+* SSID: `cox-sfv2-showroom` (or `cox-sfv2-showroom-mxm`)
+* Password: `s01uTIon5`
+* URL: http://showroom.mxm
 
-**Ethernet Interface**: `enp0s25` (MAC `b8:ae:ed:72:0c:84`)
+## NUC
 
-**WiFi Interface**: `wlp2s0` (MAC `34:13:e8:0f:7f:58`)
+* Ethernet Interface: `enp0s25` (MAC `b8:ae:ed:72:0c:84`)
+* nuc.showroom.sfv2.cox.mxmcloud.com
+* WiFi Interface: `wlp2s0` (MAC `34:13:e8:0f:7f:58`)
+* DHCP: `192.168.127.1/25`
+* SSID: `cox-sfv2-showroom`
 
-* IP: `192.168.127.1/25`
-* AP: `cox-sfv2-showroom` `gcpybhwtpo2g`
+## NUC (MxM)
 
-## Nuc 2
-
-**Ethernet Interface**: `enp0s25` (MAC `b8:ae:ed:72:94:f9`)
-
-**WiFi Interface**: `wlp2s0` (MAC `34:13:e8:1d:fe:48`)
-
-* IP: `192.168.127.129/25`
-* AP: `cox-sfv2-showroom-2` `gcpybhwtpo2g`
+* Ethernet Interface: `enp0s25` (MAC `b8:ae:ed:72:94:f9`)
+* nuc.showroom.dev.sfv2.cox.mxmcloud.com
+* WiFi Interface: `wlp2s0` (MAC `34:13:e8:1d:fe:48`)
+* DHCP: `192.168.127.129/25`
+* SSID: `cox-sfv2-showroom-mxm`
