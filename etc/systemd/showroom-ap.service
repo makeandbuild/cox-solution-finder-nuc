@@ -1,0 +1,13 @@
+[Unit]
+Description=Showroom WiFi Access Point
+After=NetworkManager.service
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/nmcli c up cox-sfv2-showroom
+ExecStop=/usr/bin/nmcli c down cox-sfv2-showroom
+
+[Install]
+WantedBy=multi-user.target
