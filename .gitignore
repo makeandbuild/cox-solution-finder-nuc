@@ -3,9 +3,9 @@ logs
 *.log
 
 # Data
-data/
-archive/
-settings/
+data/*
+archive/*
+settings/*
 
 # Vim editor
 *.swp
