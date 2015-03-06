@@ -61,8 +61,9 @@ run rm releases/$rel_tag/archive.tar.gz
 
 ###
 # Setup links
-# run rm -Rf releases/$rel_tag/log releases/$rel_tag/tmp releases/$rel_tag/public/uploads
-# run ln -s $APP_ROOT/shared/log releases/$rel_tag/log
+run rm -Rf releases/$rel_tag/log releases/$rel_tag/tmp releases/$rel_tag/archive \
+    releases/$rel_tag/data releases/$rel_tag/settings
+run ln -s $APP_ROOT/shared/log releases/$rel_tag/log
 run ln -s $APP_ROOT/shared/tmp releases/$rel_tag/tmp
 run ln -s $APP_ROOT/shared/system/archive releases/$rel_tag/archive
 run ln -s $APP_ROOT/shared/system/data releases/$rel_tag/data
