@@ -3,9 +3,9 @@ logs
 *.log
 
 # Data
-data/
-archive/
-settings/
+data/*
+archive/*
+settings/*
 
 # Vim editor
 *.swp
@@ -45,7 +45,3 @@ showroom.tar.gz*
 /log/*
 /tmp/*
 !.gitkeep
-
-#test files
-touch.html
-tablet.html
