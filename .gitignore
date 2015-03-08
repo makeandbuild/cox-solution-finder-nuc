@@ -38,9 +38,10 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-public/
+public
+public-*
 
-showroom.tar.gz*
+showroom.tar*
 
 /log/*
 /tmp/*
