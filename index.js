@@ -60,7 +60,7 @@ async.waterfall([
 ], function(err) {
   if (err) {
     console.error(err);
-    exit(1)
+    process.exit(1)
   }
   server.listen(port, function() {
     console.log('Server listening now on : ' + port);
