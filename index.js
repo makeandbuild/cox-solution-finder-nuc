@@ -9,7 +9,6 @@ var async = require('async')
   , socketIO = require('socket.io')
   , fs = require('fs')
   , mkdirp = require('mkdirp')
-  , _ = require('lodash')
   , recordsApp = require('./lib/records')
   , settingsApp = require('./lib/settings');
 
