@@ -3,7 +3,7 @@
 require 'json'
 require 'net/http'
 
-SYNC_URI = URI("https://sfv2.cox.mxmcloud.com/showroom-sync")
+SYNC_URI = URI("https://dev.sfv2.cox.mxmcloud.com/showroom-sync")
 RECORDS_URI = URI('http://showroom.mxm/stats/records.json')
 
 res = Net::HTTP.start("localhost", RECORDS_URI.port) do |http|
