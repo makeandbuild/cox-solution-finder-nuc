@@ -1,0 +1,13 @@
+[Unit]
+Description=SFv2 Static Files Update
+After=NetworkManager.service
+After=network.target
+
+[Service]
+User=sfv2
+Type=simple
+ExecStart=/bin/sh -c 'cd /srv/sfv2/current ; ./script/update-public.sh'
+TimeoutStartSec=10min
+
+[Install]
+WantedBy=multi-user.target

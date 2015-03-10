@@ -1,0 +1,13 @@
+[Unit]
+Description=SFv2 Data Sync
+After=NetworkManager.service
+After=network.target
+
+[Service]
+User=sfv2
+Type=simple
+ExecStart=/bin/sh -c 'cd /srv/sfv2/current ; ./script/sync.sh'
+TimeoutStartSec=5min
+
+[Install]
+WantedBy=multi-user.target
