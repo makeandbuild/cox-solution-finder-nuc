@@ -30,7 +30,7 @@ settingsApp(statsRoute);
 app.use('/stats', statsRoute);
 
 // Listen for TV-Tablet Transfer
-io.of('/transfer').on('connection', function(socket) {
+io.on('connection', function(socket) {
   console.log('Socket connection established');
 
   socket.on('request', function(msg) {
