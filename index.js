@@ -10,7 +10,8 @@ var async = require('async')
   , fs = require('fs')
   , mkdirp = require('mkdirp')
   , recordsApp = require('./lib/records')
-  , settingsApp = require('./lib/settings');
+  , settingsApp = require('./lib/settings')
+  , statusApp = require('./lib/status');
 
 var port = process.env.PORT,
     app = express(),
@@ -20,8 +21,12 @@ var port = process.env.PORT,
 // for parsing application/json
 app.use(bodyParser.json());
 
-app.get('/_status_/heartbeat', function (req, res) {
-  res.type("text").send("OK");
+var statusRoute = express.Router();
+statusApp(statusRoute);
+app.use('/_status_', statusRoute);
+
+app.get('showroomstatus', function (req, res) {
+  res.redirect('/_status_/update');
 });
 
 var statsRoute = express.Router();
