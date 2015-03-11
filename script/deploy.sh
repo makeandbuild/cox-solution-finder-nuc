@@ -85,6 +85,9 @@ run ln -s $APP_ROOT/releases/$rel_tag current
 
 ###
 # Restart
-run touch current/tmp/restart.txt
+# run touch current/tmp/restart.txt
+
+echo "You need to restart the application on the server with:"
+echo "    sudo systemctl restart sfv2-app.service"
 
 # notify_slack "Finished deployment: $rel_tag to $ENVIRONMENT"
