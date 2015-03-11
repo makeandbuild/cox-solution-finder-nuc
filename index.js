@@ -25,7 +25,7 @@ var statusRoute = express.Router();
 statusApp(statusRoute);
 app.use('/_status_', statusRoute);
 
-app.get('showroomstatus', function (req, res) {
+app.get('/showroomstatus', function (req, res) {
   res.redirect('/_status_/update');
 });
 
