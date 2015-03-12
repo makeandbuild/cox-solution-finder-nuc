@@ -1,5 +1,5 @@
 [connection]
-id=cox-sfv2-showroom
+id=cox-sfv2-showroom-mxm
 uuid=d6aa70f8-02a3-4b94-b63e-2cfc7edbb16a
 interface-name=wlp2s0
 type=wifi
@@ -7,7 +7,7 @@ timestamp=1425440567
 autoconnect=true
 
 [wifi]
-ssid=cox-sfv2-showroom
+ssid=cox-sfv2-showroom-mxm
 mode=ap
 security=802-11-wireless-security
 hidden=true

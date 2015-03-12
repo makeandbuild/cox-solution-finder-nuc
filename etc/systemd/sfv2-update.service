@@ -6,7 +6,8 @@ After=network.target
 [Service]
 User=sfv2
 Type=simple
-ExecStart=/bin/sh -c 'cd /srv/sfv2/current ; ./script/update-public.sh'
+EnvironmentFile=-/etc/sysconfig/sfv2
+ExecStart=/bin/sh -c "cd /srv/sfv2/current ; ./script/update-public.sh ${ENVIRONMENT}"
 TimeoutStartSec=10min
 
 [Install]
