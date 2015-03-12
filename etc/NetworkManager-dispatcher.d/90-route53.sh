@@ -28,7 +28,7 @@ EOF
   echo $change_batch_fn
 }
 
-logger -p user.debug "$if_name $status"
+logger -p user.debug "$if_name $status 90-route53"
 
 if [[ $status == "up" ]] || [[ $status == "dhcp4-change" ]]; then
   if [[ $if_name == "enp0s25" ]]; then
