@@ -1,13 +1,31 @@
 #!/bin/bash
 
-SOURCE_URI="https://dev.sfv2.cox.mxmcloud.com/uploads/showroom.tar"
+function usage () {
+  cat <<EOF
+Usage: $PROGNAME ENVIRONMENT
+Updates the public file from the static showroom tarball
+    ENVIRONMENT   dev|staging|prod
+EOF
+  exit $( [ $# -ne 0 ] && echo $1 || echo 0 )
+}
+[ -z "$1" ] && usage 1
 
-SHOWROOM_MD5=` cat showroom.tar.md5 `
-showroom_md5=` curl -sS $SOURCE_URI.md5 `
+ENVIRONMENT=$1
 DTS=$( date +'%Y%m%d%H%M%S' )
+source_uri=""
 
-if [[ $SHOWROOM_MD5 != $showroom_md5 ]]; then
-  curl -sS --compressed -o tmp/showroom.tar $SOURCE_URI
+case "$ENVIRONMENT" in
+  dev|staging ) source_uri="https://$ENVIRONMENT.sfv2.cox.mxmcloud.com/uploads/showroom.tar" ;;
+  prod ) source_uri="https://sfv2.cox.mxmcloud.com/uploads/showroom.tar" ;;
+  * ) echo "Invalid environment" 1>&2 ; usage 1 ;;
+esac
+
+showroom_md5_current=""
+[ -f showroom.tar.md5 ] && showroom_md5_current=` cat showroom.tar.md5 `
+showroom_md5_new=` curl -sS $source_uri.md5 `
+
+if [[ $showroom_md5_current != $showroom_md5_new ]]; then
+  curl -sS --compressed -o tmp/showroom.tar $source_uri
   if [[ "$?" == "0" ]]; then
     tar -C tmp/ -xf tmp/showroom.tar
     if [[ "$?" == "0" ]]; then
