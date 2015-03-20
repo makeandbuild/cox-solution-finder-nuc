@@ -30,7 +30,7 @@ showroom_md5_current=""
 [ -f showroom.tar.md5 ] && showroom_md5_current=` cat showroom.tar.md5 `
 showroom_md5_new=` curl -sS $base_uri/uploads/showroom.tar.md5 `
 
-if [[ $showroom_md5_current != $showroom_md5_new ]]; then
+if [[ "$showroom_md5_current" == "$showroom_md5_new" ]]; then
   echo "Tarball not changed.  Not updating."
   exit 0
 fi
@@ -57,4 +57,4 @@ ln -s public-$DTS public
 for dn in ` find -name 'public-*' `; do
   [[ $dn != "./public-$DTS" ]] && rm -rf $dn
 done
-echo $showroom_md5 > showroom.tar.md5
+echo "$showroom_md5_new" > showroom.tar.md5
