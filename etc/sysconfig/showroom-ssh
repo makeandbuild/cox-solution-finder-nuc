@@ -1,0 +1,7 @@
+# SSH Tunnel Config
+SSH_KEY=/root/.ssh/id_rsa
+SSH_HOST=dev.sfv2.cox.mxmcloud.com
+# SSH_HOST=staging.sfv2.cox.mxmcloud.com
+SSH_USER=sfv2-sshforward
+SSH_REMOTE_PORT=2122
+# SSH_REMOTE_PORT=2222

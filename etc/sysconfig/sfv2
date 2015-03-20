@@ -1,0 +1,4 @@
+# sfv2-update service
+ENVIRONMENT=dev
+# ENVIRONMENT=staging
+# ENVIRONMENT=prod
