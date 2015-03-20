@@ -7,7 +7,7 @@ After=network.target
 User=sfv2
 Type=simple
 EnvironmentFile=-/etc/sysconfig/sfv2
-ExecStart=/bin/sh -c "cd /srv/sfv2/current ; ./script/sync.rb ${ENVIRONMENT}"
+ExecStart=/bin/sh -c "cd /srv/sfv2/current ; ./script/sync.sh ${ENVIRONMENT}"
 TimeoutStartSec=5min
 
 [Install]

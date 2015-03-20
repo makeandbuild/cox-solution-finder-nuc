@@ -12,33 +12,49 @@ EOF
 
 ENVIRONMENT=$1
 DTS=$( date +'%Y%m%d%H%M%S' )
-source_uri=""
+base_uri=""
 
 case "$ENVIRONMENT" in
-  dev|staging ) source_uri="https://$ENVIRONMENT.sfv2.cox.mxmcloud.com/uploads/showroom.tar" ;;
-  prod ) source_uri="https://sfv2.cox.mxmcloud.com/uploads/showroom.tar" ;;
+  dev|staging ) base_uri="https://$ENVIRONMENT.sfv2.cox.mxmcloud.com" ;;
+  prod ) base_uri="https://sfv2.cox.mxmcloud.com" ;;
   * ) echo "Invalid environment" 1>&2 ; usage 1 ;;
 esac
 
+heartbeat_check=` curl -sS $base_uri/_status_/heartbeat `
+if [[ $? != 0 ]] || [[ "$heartbeat_check" != "OK" ]]; then
+  echo "Server heartbeat check failed." 1>&2
+  exit 2
+fi
+
 showroom_md5_current=""
 [ -f showroom.tar.md5 ] && showroom_md5_current=` cat showroom.tar.md5 `
-showroom_md5_new=` curl -sS $source_uri.md5 `
+showroom_md5_new=` curl -sS $base_uri/uploads/showroom.tar.md5 `
 
 if [[ $showroom_md5_current != $showroom_md5_new ]]; then
-  curl -sS --compressed -o tmp/showroom.tar $source_uri
-  if [[ "$?" == "0" ]]; then
-    tar -C tmp/ -xf tmp/showroom.tar
-    if [[ "$?" == "0" ]]; then
-      mv -f tmp/public public-$DTS
-      rm -f public
-      ln -s public-$DTS public
-      for dn in ` find -name 'public-*' `; do
-        [[ $dn != "./public-$DTS" ]] && rm -rf $dn
-      done
-      echo $showroom_md5 > showroom.tar.md5
-    fi
-    rm -f tmp/showroom.tar
-  else
-    rm -f tmp/showroom.tar
-  fi
+  echo "Tarball not changed.  Not updating."
+  exit 0
 fi
+
+curl -sS --compressed -o tmp/showroom.tar "$base_uri/uploads/showroom.tar"
+if [[ $? != 0 ]]; then
+  echo "Failed to download tarball." 1>&2
+  rm -f tmp/showroom.tar
+  exit 3
+fi
+
+tar -C tmp/ -xf tmp/showroom.tar
+if [[ $? != 0 ]]; then
+  echo "Failed to extract tarball." 1>&2
+  rm -f tmp/showroom.tar
+  exit 4
+else
+  rm -f tmp/showroom.tar
+fi
+
+mv -f tmp/public public-$DTS
+rm -f public
+ln -s public-$DTS public
+for dn in ` find -name 'public-*' `; do
+  [[ $dn != "./public-$DTS" ]] && rm -rf $dn
+done
+echo $showroom_md5 > showroom.tar.md5
