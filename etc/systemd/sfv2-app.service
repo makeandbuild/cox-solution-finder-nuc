@@ -4,7 +4,7 @@ After=showroom-ap.service
 
 [Service]
 User=sfv2
-EnvironmentFile=-/etc/sysconfig/sfv2
+EnvironmentFile=-/etc/sysconfig/sfv2-app
 ExecStart=/bin/sh -c "cd /srv/sfv2/current ; npm start &>>log/${ENVIRONMENT}.log"
 ExecStop=/bin/sh -c "cd /srv/sfv2/current ; npm stop"
 
