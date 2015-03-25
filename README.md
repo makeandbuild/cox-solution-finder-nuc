@@ -74,7 +74,7 @@ This nginx config shows how to run the static site and this app as a subdirector
 
 ## NUC Dev
 
-* Ethernet Interface: `enp0s25` (MAC `TBD`)
+* Ethernet Interface: `enp0s25` (MAC `b8:ae:ed:72:a1:e9`)
 * nuc.showroom.dev.sfv2.cox.mxmcloud.com
 * WiFi Interface: `wlp2s0` (MAC `TBD`)
 * DHCP: `192.168.126.1/24`
