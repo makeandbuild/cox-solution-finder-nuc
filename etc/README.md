@@ -1,35 +1,15 @@
 # Configurations
 
-*Files prefixed with `mxm-` are alternative versions specific to the MaxMedia NUC*
+Most of the etc files go to their corresponding directories under `/etc` on the NUCs with a few
+exceptions:
+
+* `named/named.cox-sfv2-showroom` - `/var/named/`
+* `sbin/*` -> `/usr/local/sbin/`
+* `systemd/*` -> `/etc/systemd/system/`
+
+Each configuration file is setup for development by default; however, it has configurations for
+staging, production, NUC1, and NUC2 notated and commented out.
 
 ## Gottchas
 
 * Files in `/var/named` must have permissions of `0640` and owned by the `named` group.
-
-## SSH Config `/root/.ssh/config`
-
-NUC 1:
-
-```
-Host showroom-sshfwd
-  HostName staging.sfv2.cox.mxmcloud.com
-  User sfv2-sshforward
-  RemoteForward 2122 localhost:22
-```
-
-NUC 2:
-
-```
-Host showroom-sshfwd
-  HostName staging.sfv2.cox.mxmcloud.com
-  User sfv2-sshforward
-  RemoteForward 2222 localhost:22
-```
-NUC dev:
-
-```
-Host showroom-sshfwd
-  HostName dev.sfv2.cox.mxmcloud.com
-  User sfv2-sshforward
-  RemoteForward 2122 localhost:22
-```
