@@ -132,3 +132,7 @@ To install the backported drivers:
     make defconfig-iwlwifi
     make -j3
     make install
+
+### SELinux
+
+Disable it... `/etc/selinux/config` set `SELINUX=disabled`

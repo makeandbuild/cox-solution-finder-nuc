@@ -1,13 +1,12 @@
 [connection]
 id=cox-sfv2-showroom-dev
-#TODO uuid
+uuid=0ea8fabb-1732-48df-ad3b-1d33342cb0a7
 interface-name=wlp2s0
 type=wifi
-#TODO timestamp=
 autoconnect=true
 
 [wifi]
-ssid=cox-sfv2-showroom-mxm
+ssid=cox-sfv2-showroom-dev
 mode=ap
 security=802-11-wireless-security
 hidden=true
@@ -19,7 +18,7 @@ psk=s01uTIon5
 [ipv4]
 method=manual
 dns=192.168.126.1;
-address1=192.168.126.1/24,192.168.127.1
+address1=192.168.126.1/25,192.168.126.1
 never-default=true
 
 [ipv6]
