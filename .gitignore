@@ -3,8 +3,9 @@ logs
 *.log
 
 # Data
-data/
-archive/
+data/*
+archive/*
+settings/*
 
 # Vim editor
 *.swp
@@ -36,3 +37,12 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+public
+public-*
+
+showroom.tar*
+
+/log/*
+/tmp/*
+!.gitkeep

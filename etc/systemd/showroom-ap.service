@@ -1,0 +1,13 @@
+[Unit]
+Description=Showroom WiFi Access Point
+After=network.target NetworkManager.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/sysconfig/showroom-ap
+RemainAfterExit=yes
+ExecStart=/usr/bin/nmcli c up ${WIFI_NAME}
+ExecStop=/usr/bin/nmcli c down ${WIFI_NAME}
+
+[Install]
+WantedBy=multi-user.target

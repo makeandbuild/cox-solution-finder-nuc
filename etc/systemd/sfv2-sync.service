@@ -1,0 +1,14 @@
+[Unit]
+Description=SFv2 Data Sync
+Requires=network.target NetworkManager.service
+Wants=network-online.target
+
+[Service]
+User=sfv2
+Type=simple
+EnvironmentFile=-/etc/sysconfig/sfv2-sync
+ExecStart=/bin/sh -c "cd /srv/sfv2/current ; ./script/sync.sh ${ENVIRONMENT}"
+TimeoutStartSec=5min
+
+[Install]
+WantedBy=multi-user.target

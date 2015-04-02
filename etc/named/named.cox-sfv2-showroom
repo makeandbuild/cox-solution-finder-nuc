@@ -1,0 +1,20 @@
+$TTL 5M
+@	IN SOA	@ hostmaster.maxmedia.com. (
+					2015030400	; serial
+					5M	; refresh
+					30M	; retry
+					30M	; expire
+					5M )	; minimum
+	NS	@
+
+	;; NUC-dev
+	A	192.168.126.1
+
+	;; NUC-1
+	; A	192.168.127.1
+
+	;; NUC-2
+	; A	192.168.127.129
+
+	;; NUC-3
+	; A	192.168.126.129

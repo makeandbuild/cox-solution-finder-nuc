@@ -1,0 +1,12 @@
+[Unit]
+Description=Showroom SSH Tunnel
+Requires=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/sysconfig/showroom-ssh
+ExecStart=/bin/ssh -i ${SSH_KEY} -NC -R ${SSH_REMOTE_PORT}:localhost:22 ${SSH_USER}@${SSH_HOST}
+
+[Install]
+WantedBy=multi-user.target

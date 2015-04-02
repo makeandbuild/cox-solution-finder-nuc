@@ -1,0 +1,14 @@
+[Unit]
+Description=SFv2 Static Files Update
+Requires=network.target NetworkManager.service
+Wants=network-online.target
+
+[Service]
+User=sfv2
+Type=simple
+EnvironmentFile=-/etc/sysconfig/sfv2-update
+ExecStart=/bin/sh -c "cd /srv/sfv2/current ; ./script/update-public.sh ${ENVIRONMENT}"
+TimeoutStartSec=10min
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+# sfv2-sync service
+ENVIRONMENT=dev
+# ENVIRONMENT=staging
+# ENVIRONMENT=prod
