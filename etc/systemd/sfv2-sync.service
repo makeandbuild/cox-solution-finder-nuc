@@ -1,7 +1,7 @@
 [Unit]
 Description=SFv2 Data Sync
-After=NetworkManager.service
-After=network.target
+Requires=network.target NetworkManager.service
+Wants=network-online.target
 
 [Service]
 User=sfv2

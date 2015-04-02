@@ -1,14 +1,19 @@
 # Configurations
 
-Most of the etc files go to their corresponding directories under `/etc` on the NUCs with a few
-exceptions:
+The etc files go to the following directories on the NUCs:
 
-* `named/named.cox-sfv2-showroom` - `/var/named/`
+* `dhcp/*` -> `/etc/dhcp/`
+* `named/named.conf` -> `/etc/`
+* `named/named.cox-sfv2-showroom` -> `/var/named/`
+* `NetworkManager-dispatcher.d/*` -> `/etc/NetworkManager/dispatcher.d/`
+* `NetworkManager-system-connections/*` -> `/etc/NetworkManager/system-connections/`
+* `nginx/*` -> `/etc/nginx/conf.d/`
 * `sbin/*` -> `/usr/local/sbin/`
+* `sysconfig/*` -> `/etc/sysconfig/`
 * `systemd/*` -> `/etc/systemd/system/`
 
 Each configuration file is setup for development by default; however, it has configurations for
-staging, production, NUC1, and NUC2 notated and commented out.
+staging, production, and the various NUCs (as "NUC-?") notated and commented out.
 
 ## Gottchas
 

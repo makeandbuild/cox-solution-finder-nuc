@@ -1,4 +1,3 @@
 # showroom-ap service
-WIFI_NAME=cox-sfv2-showroom
-# WIFI_NAME=cox-sfv2-showroom-mxm
-# WIFI_NAME=cox-sfv2-showroom-dev
+WIFI_NAME=cox-sfv2-showroom-dev
+# WIFI_NAME=cox-sfv2-showroom

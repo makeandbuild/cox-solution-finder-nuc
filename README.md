@@ -56,30 +56,38 @@ This nginx config shows how to run the static site and this app as a subdirector
 * Password: `s01uTIon5`
 * URL: http://showroom.mxm
 
-## NUC Dev
+## NUC-Dev
 
 * Ethernet Interface: `enp0s25` (MAC `b8:ae:ed:72:a1:e9`)
 * nuc.showroom.dev.sfv2.cox.mxmcloud.com
 * WiFi Interface: `wlp2s0` (MAC `34:13:e8:1e:e3:67`)
 * DHCP: `192.168.126.1/24`
-* SSID: `cox-sfv2-showroom-dev`
+* SSID: `cox-showroom-dev`
 
 
-## NUC 1
+## NUC-1
 
 * Ethernet Interface: `enp0s25` (MAC `b8:ae:ed:72:0c:84`)
 * nuc1.showroom.sfv2.cox.mxmcloud.com
 * WiFi Interface: `wlp2s0` (MAC `34:13:e8:0f:7f:58`)
 * DHCP: `192.168.127.1/25`
-* SSID: `cox-sfv2-showroom`
+* SSID: `cox-showroom-1`
 
-## NUC 2
+## NUC-2
 
 * Ethernet Interface: `enp0s25` (MAC `b8:ae:ed:72:94:f9`)
 * nuc2.showroom.sfv2.cox.mxmcloud.com
 * WiFi Interface: `wlp2s0` (MAC `34:13:e8:1d:fe:48`)
 * DHCP: `192.168.127.129/25`
-* SSID: `cox-sfv2-showroom-mxm`
+* SSID: `cox-showroom-2`
+
+## NUC-3
+
+* Ethernet Interface: `enp0s25` (MAC `TBD`)
+* nuc3.showroom.sfv2.cox.mxmcloud.com
+* WiFi Interface: `wlp2s0` (MAC `TBD`)
+* DHCP: `192.168.126.129/25`
+* SSID: `cox-showroom-3`
 
 ## NUC Configurations
 
@@ -136,3 +144,7 @@ To install the backported drivers:
 ### SELinux
 
 Disable it... `/etc/selinux/config` set `SELINUX=disabled`
+
+## CloneZilla (possibility for imaging the NUCs)
+
+http://clonezilla.org/livehd.php

@@ -6,7 +6,7 @@ type=wifi
 autoconnect=true
 
 [wifi]
-ssid=cox-sfv2-showroom-dev
+ssid=cox-showroom-dev
 mode=ap
 security=802-11-wireless-security
 hidden=true
