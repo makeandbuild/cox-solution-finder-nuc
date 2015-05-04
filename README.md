@@ -82,11 +82,19 @@ This nginx config shows how to run the static site and this app as a subdirector
 
 ## NUC-3
 
-* Ethernet Interface: `enp0s25` (MAC `TBD`)
+* Ethernet Interface: `enp0s25` (MAC `b8:ae:ed:72:31:ed`)
 * nuc3.showroom.sfv2.cox.mxmcloud.com
-* WiFi Interface: `wlp2s0` (MAC `TBD`)
-* DHCP: `192.168.126.129/25`
+* WiFi Interface: `wlp2s0` (MAC `34:13:e8:1f:e2:8a`)
+* DHCP: `192.168.126.1/25`
 * SSID: `cox-showroom-3`
+
+## NUC-4
+
+* Ethernet Interface: `enp0s25` (MAC `b8:ae:ed:72:27:a5`)
+* nuc4.showroom.sfv2.cox.mxmcloud.com
+* WiFi Interface: `wlp2s0` (MAC `34:13:e8:10:65:03`)
+* DHCP: `192.168.126.129/25`
+* SSID: `cox-showroom-4`
 
 ## NUC Configurations
 
