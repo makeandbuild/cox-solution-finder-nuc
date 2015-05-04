@@ -1,6 +1,6 @@
 {
   "name": "cox-solution-finder-nuc",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple Express app to capture posts",
   "repository": {
     "type": "git",
